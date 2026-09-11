@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Awareness Assistant | Educational Wellness Chatbot</title>
+  <meta name="description" content="An educational health awareness assistant providing evidence-based lifestyle education, prevention tips, and interactive wellness quizzes with strict clinical safety guardrails.">
+  
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20width=%2232%22%20height=%2232%22><text y=%2226%22 font-size=%2226%22>🌿</text></svg>">
+</head>
+<body>
+  <div class="app-container" id="appRoot">
+    
+    <!-- Mobile Header Toggle -->
+    <header class="mobile-nav-bar" id="mobileNavBar">
+      <div class="brand-mini">
+        <span class="brand-icon-mini">🌿</span>
+        <span class="brand-name-mini">Vitalis Health</span>
+      </div>
+      <button class="mobile-toggle-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </header>
+
+    <!-- App Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-container">
+          <div class="brand-icon-wrapper">
+            <span class="brand-icon">🌿</span>
+            <span class="brand-pulse"></span>
+          </div>
+          <div class="brand-text">
+            <h1 class="brand-title">Vitalis</h1>
+            <span class="brand-subtitle">Health Awareness AI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation & Required Action Buttons -->
+      <nav class="sidebar-nav" aria-label="Main Navigation">
+        <div class="nav-section-title">PRIMARY NAVIGATION</div>
+        
+        <!-- Chat View Button -->
+        <button class="nav-btn active" id="navChatBtn" data-view="chatView">
+          <span class="nav-btn-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </span>
+          <span class="nav-btn-text">Chat Assistant</span>
+          <span class="badge-pill">Live</span>
+        </button>
+
+        <!-- Prompt Explanation Button (Specified Requirement) -->
+        <button class="nav-btn" id="navPromptExplanationBtn" data-view="promptExplanationView">
+          <span class="nav-btn-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+          </span>
+          <span class="nav-btn-text">Prompt Explanation</span>
+        </button>
+
+        <!-- Quiz Button (Specified Requirement) -->
+        <button class="nav-btn" id="navQuizBtn" data-view="quizView">
+          <span class="nav-btn-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </span>
+          <span class="nav-btn-text">Health Quiz</span>
+          <span class="badge-pill count-badge" id="quizCountBadge">8 Qs</span>
+        </button>
+      </nav>
+
+      <!-- Search & Conversation History (Tracks previous user searches) -->
+      <div class="sidebar-history" id="sidebarHistorySection">
+        <div class="history-header">
+          <span class="nav-section-title">SEARCH &amp; CHAT HISTORY</span>
+          <button type="button" class="clear-history-btn" id="clearHistoryBtn" title="Clear search history">Clear</button>
+        </div>
+        <div class="history-items-container" id="historyItemsContainer">
+          <div class="history-empty" id="historyEmpty">
+            <span>No previous searches yet</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Suggested Health Topics Quick Shortcuts -->
+      <div class="sidebar-topics">
+        <div class="nav-section-title">POPULAR TOPICS</div>
+        <div class="topic-chip-container">
+          <button class="topic-chip" data-prompt="What are optimal daily hydration guidelines and markers?">
+            💧 Hydration Tips
+          </button>
+          <button class="topic-chip" data-prompt="What are evidence-based sleep hygiene habits for restful sleep?">
+            😴 Sleep Hygiene
+          </button>
+          <button class="topic-chip" data-prompt="What are the WHO physical activity recommendations for adults?">
+            🏃 Physical Activity
+          </button>
+          <button class="topic-chip" data-prompt="What are the main principles of a balanced, fiber-rich diet?">
+            🥗 Balanced Diet
+          </button>
+          <button class="topic-chip" data-prompt="How does diaphragmatic deep breathing reduce stress?">
+            🧘 Stress Relief
+          </button>
+        </div>
+      </div>
+
+      <!-- Persistent Sidebar Educational Disclaimer & Emergency Notice -->
+      <div class="sidebar-footer">
+        <div class="emergency-card" id="sidebarEmergencyCard">
+          <div class="emergency-icon-tag">🚨 EMERGENCY NOTICE</div>
+          <p class="emergency-text">
+            For severe chest pain, shortness of breath, or trauma, call <strong>911</strong> or local emergency dispatch immediately.
+          </p>
+        </div>
+        <div class="disclaimer-card">
+          <div class="disclaimer-tag">ℹ️ EDUCATIONAL PURPOSE ONLY</div>
+          <p class="disclaimer-text">
+            This chatbot provides general health information and lifestyle education. It does <strong>not</strong> provide medical diagnoses, treatment, or clinical advice.
+          </p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content" id="mainContent">
+      
+      <!-- Top Navigation Header -->
+      <header class="top-header" id="topHeader">
+        <div class="header-left">
+          <div class="active-view-indicator">
+            <span class="status-dot"></span>
+            <span class="view-title" id="currentViewTitle">Health Awareness Chat</span>
+          </div>
+          <span class="guardrail-badge" title="Automated ethical filters actively verify all conversations">
+            🛡️ Guardrails Active: No Diagnosis / No Rx
+          </span>
+        </div>
+        <div class="header-right">
+          <!-- Google API Key Status & Settings Toggle -->
+          <button class="action-btn api-key-badge-btn" id="apiKeySettingsBtn" title="Configure Google Gemini API Key">
+            <span class="key-status-dot" id="headerKeyDot"></span>
+            <span class="key-label" id="headerKeyLabel">Google API</span>
+          </button>
+          <button class="action-btn" id="emergencyInfoBtn" title="View emergency escalation guidance">
+            🚨 Emergency Info
+          </button>
+          <button class="action-btn secondary" id="clearChatBtn" title="Reset current conversation">
+            🧹 Clear Chat
+          </button>
+        </div>
+      </header>
+
+      <!-- VIEW 1: CHAT ASSISTANT VIEW -->
+      <section class="view-panel active" id="chatView">
+        <div class="chat-viewport" id="chatViewport">
+          <div class="chat-messages" id="chatMessages">
+            
+            <!-- Welcome Hero Message Card -->
+            <div class="message-row bot-row" id="welcomeMessage">
+              <div class="avatar-badge">🌿</div>
+              <div class="message-bubble bot-bubble">
+                <div class="bubble-header">
+                  <span class="sender-name">Vitalis Health Assistant</span>
+                  <span class="message-time">Just now</span>
+                </div>
+                <div class="bubble-body">
+                  <p class="greeting-lead">
+                    👋 Welcome! I am your <strong>Health Awareness & Lifestyle Education Assistant</strong>.
+                  </p>
+                  <p>
+                    I help you explore evidence-based health concepts, preventive wellness habits, and healthy living practices grounded in public health consensus.
+                  </p>
+                  
+                  <div class="feature-highlights">
+                    <div class="feature-item">
+                      <span class="feat-icon">💡</span>
+                      <span class="feat-text"><strong>General Health Education:</strong> Sleep, hydration, exercise guidelines, nutrition, and stress resilience.</span>
+                    </div>
+                    <div class="feature-item">
+                      <span class="feat-icon">🛡️</span>
+                      <span class="feat-text"><strong>Ethical Safety Guardrails:</strong> Strictly avoids medical diagnosis, individual symptom analysis, or drug prescriptions.</span>
+                    </div>
+                    <div class="feature-item">
+                      <span class="feat-icon">🧠</span>
+                      <span class="feat-text"><strong>Interactive Quiz:</strong> Test your health awareness anytime using the sidebar button.</span>
+                    </div>
+                  </div>
+
+                  <div class="bubble-notice">
+                    ⚠️ <em>Important: This tool is strictly for educational purposes and is not a substitute for professional medical advice or emergency care.</em>
+                  </div>
+                </div>
+
+                <div class="bubble-actions">
+                  <span class="bubble-label">Try asking:</span>
+                  <div class="prompt-chips">
+                    <button class="chip-btn" data-text="What are key sleep hygiene tips for deep sleep?">Sleep hygiene tips</button>
+                    <button class="chip-btn" data-text="How much water should I drink each day?">Daily hydration guide</button>
+                    <button class="chip-btn" data-text="What are the WHO physical exercise recommendations?">WHO exercise rules</button>
+                    <button class="chip-btn" data-text="Why don't antibiotics work for cold or flu?">Antibiotic awareness</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Typing Indicator Bubble (Hidden by default) -->
+          <div class="message-row bot-row typing-indicator-row" id="typingIndicator" style="display: none;">
+            <div class="avatar-badge">🌿</div>
+            <div class="typing-bubble">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="typing-text">Vitalis is typing...</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat Input Form -->
+        <footer class="chat-input-container">
+          <form class="chat-form" id="chatForm">
+            <div class="input-wrapper">
+              <textarea 
+                class="chat-input" 
+                id="userInput" 
+                rows="1" 
+                placeholder="Ask about healthy lifestyle, prevention, nutrition, sleep, or wellness..."
+                aria-label="Ask a health education question"></textarea>
+              
+              <button type="submit" class="send-btn" id="sendBtn" aria-label="Send message">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+            </div>
+            
+            <div class="input-disclaimer-bar">
+              <span>ℹ️ Educational tool only. For personal medical concerns or emergencies, consult a licensed clinician or call 911 immediately.</span>
+            </div>
+          </form>
+        </footer>
+      </section>
+
+      <!-- VIEW 2: PROMPT EXPLANATION VIEW (Specified Requirement) -->
+      <section class="view-panel" id="promptExplanationView" style="display: none;">
+        <div class="explanation-container">
+          
+          <div class="panel-hero">
+            <div class="hero-badge">SYSTEM ARCHITECTURE</div>
+            <h2 class="hero-title">Prompt Explanation & Safety Framework</h2>
+            <p class="hero-desc">
+              Understand how the Health Awareness Assistant is structured, how safety guardrails are programmatically enforced, and why medical diagnosis and prescriptive claims are strictly blocked.
+            </p>
+          </div>
+
+          <!-- Architecture Cards Grid -->
+          <div class="cards-grid">
+            
+            <!-- Mission Card -->
+            <div class="info-card">
+              <div class="card-icon-box teal">🎯</div>
+              <h3 class="card-title">Core Mission & Persona</h3>
+              <p class="card-text">
+                The chatbot is designed as an <strong>Educational Health & Wellness Companion</strong>. Its goal is to elevate baseline health literacy and empower users with lifestyle knowledge from reputable health agencies (WHO, CDC, AHA).
+              </p>
+              <div class="card-highlight">
+                <strong>Tone:</strong> Informative, encouraging, empathetic, objective, and non-prescriptive.
+              </div>
+            </div>
+
+            <!-- Strict Refusal Card -->
+            <div class="info-card">
+              <div class="card-icon-box purple">🛡️</div>
+              <h3 class="card-title">Diagnostic & Prescription Boundary</h3>
+              <p class="card-text">
+                To prevent patient harm and false reassurance, the assistant <strong>never diagnoses conditions</strong> or prescribes treatments.
+              </p>
+              <ul class="bullet-list">
+                <li>Detects phrases like <em>"Do I have cancer?"</em> or <em>"Diagnose my rash"</em>.</li>
+                <li>Explains that medical assessment requires physical exams and lab tests.</li>
+                <li>Directs patients to primary care clinicians.</li>
+              </ul>
+            </div>
+
+            <!-- Emergency Triage Card -->
+            <div class="info-card">
+              <div class="card-icon-box red">🚨</div>
+              <h3 class="card-title">Emergency Escalation Protocol</h3>
+              <p class="card-text">
+                High-priority regex filters intercept red-flag medical emergency keywords before any standard educational content is retrieved.
+              </p>
+              <div class="escalation-flags">
+                <span class="flag-tag">Chest Pain</span>
+                <span class="flag-tag">Shortness of Breath</span>
+                <span class="flag-tag">Stroke Signs</span>
+                <span class="flag-tag">Severe Trauma</span>
+                <span class="flag-tag">Crisis / Self-harm</span>
+              </div>
+              <p class="card-caption">Immediately displays emergency hotline guidance (911 / 988).</p>
+            </div>
+
+            <!-- Universal Disclaimer Card -->
+            <div class="info-card">
+              <div class="card-icon-box amber">📋</div>
+              <h3 class="card-title">Mandatory Universal Disclaimer</h3>
+              <p class="card-text">
+                Every educational response includes a standardized disclaimer, maintaining transparent expectations that AI output is for educational literacy only and cannot supersede clinical expertise.
+              </p>
+              <div class="disclaimer-snippet">
+                "This assistant provides general health awareness and educational information only. It is not a substitute for professional medical advice, diagnosis, or treatment."
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Interactive Guardrail Verification Playground -->
+          <div class="test-guardrails-card">
+            <h3 class="test-title">🧪 Test Guardrails in Action</h3>
+            <p class="test-subtitle">
+              Click any of the scenarios below to see how the assistant’s guardrail engine reacts in real time:
+            </p>
+            <div class="test-buttons-row">
+              <button class="test-btn test-diag" id="testDiagnosticBtn">
+                ⚠️ Test Diagnosis Query: "Do I have bronchitis? Diagnose my cough."
+              </button>
+              <button class="test-btn test-emer" id="testEmergencyBtn">
+                🚨 Test Emergency Query: "I have severe chest pain and cannot breathe."
+              </button>
+              <button class="test-btn test-edu" id="testEducationBtn">
+                💧 Test Educational Query: "What are healthy daily hydration habits?"
+              </button>
+            </div>
+          </div>
+
+          <!-- Raw System Prompt Inspection Drawer -->
+          <div class="prompt-text-card">
+            <div class="prompt-card-header">
+              <h3 class="prompt-section-heading">📜 Underlying System Prompt Specification</h3>
+              <button class="copy-prompt-btn" id="copyPromptBtn">📋 Copy Prompt</button>
+            </div>
+            <pre class="prompt-code-block" id="systemPromptCode">
+ROLE: Health Awareness & Lifestyle Education Assistant
+
+PRIMARY OBJECTIVE:
+Provide accurate, accessible, and evidence-informed health education, preventive lifestyle tips,
+and wellness literacy based on consensus from authoritative bodies (WHO, CDC, AHA, NIH).
+
+STRICT CONSTRAINTS & REFUSAL POLICIES:
+1. NO MEDICAL DIAGNOSIS:
+   - Under no circumstances will you attempt to diagnose illnesses, evaluate individual pathology,
+     or interpret user symptoms as a specific disease.
+   - Refuse symptom self-diagnosis solicitations politely, explain why clinical evaluation is required,
+     and redirect to a primary care provider.
+
+2. NO MEDICAL PRESCRIPTIONS OR DOSING:
+   - Do not prescribe drugs, recommend prescription medication dosages, or validate unproven home cures.
+   - Clarify that pharmacotherapy requires a licensed physician's prescription.
+
+3. IMMEDIATE EMERGENCY ESCALATION:
+   - If the user mentions acute red-flag symptoms (chest pain, stroke signs, difficulty breathing,
+     severe bleeding, anaphylaxis, suicide ideation), trigger the emergency notice immediately.
+   - Direct the user to call 911 (or local emergency dispatch) or go to the nearest emergency facility.
+
+4. MANDATORY DISCLAIMER:
+   - Always clarify that the information is educational and not medical advice.
+            </pre>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- VIEW 3: HEALTH AWARENESS QUIZ VIEW (Specified Requirement) -->
+      <section class="view-panel" id="quizView" style="display: none;">
+        <div class="quiz-container">
+          
+          <div class="panel-hero">
+            <div class="hero-badge">INTERACTIVE HEALTH LITERACY</div>
+            <h2 class="hero-title">Health Awareness Quiz</h2>
+            <p class="hero-desc">
+              Test and reinforce your knowledge on vital wellness pillars: hydration, restorative sleep, cardiovascular fitness, nutrition, sun protection, and medication literacy.
+            </p>
+          </div>
+
+          <!-- Quiz Progress Card -->
+          <div class="quiz-progress-bar-container">
+            <div class="quiz-progress-meta">
+              <span id="quizProgressText">Question 1 of 8</span>
+              <span class="quiz-category-tag" id="quizCategoryTag">Physical Activity</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="quizProgressFill" style="width: 12.5%;"></div>
+            </div>
+          </div>
+
+          <!-- Active Question Card -->
+          <div class="quiz-card" id="quizQuestionCard">
+            <div class="question-header">
+              <span class="question-number" id="questionNumberDisplay">Q1</span>
+              <h3 class="question-text" id="questionTextDisplay">Loading question...</h3>
+            </div>
+
+            <div class="options-list" id="optionsList">
+              <!-- Rendered via JavaScript -->
+            </div>
+
+            <!-- Instant Answer Feedback Box -->
+            <div class="feedback-box" id="feedbackBox" style="display: none;">
+              <div class="feedback-header">
+                <span class="feedback-icon" id="feedbackIcon">✅</span>
+                <span class="feedback-title" id="feedbackTitle">Correct!</span>
+              </div>
+              <p class="feedback-explanation" id="feedbackExplanation">
+                Explanation text goes here.
+              </p>
+            </div>
+
+            <!-- Quiz Navigation Controls -->
+            <div class="quiz-controls">
+              <button class="quiz-btn secondary" id="prevQuestionBtn" disabled>
+                ← Previous
+              </button>
+              <div class="quiz-actions-right">
+                <button class="quiz-btn" id="checkAnswerBtn" disabled>
+                  Check Answer
+                </button>
+                <button class="quiz-btn primary" id="nextQuestionBtn" style="display: none;">
+                  Next Question →
+                </button>
+                <button class="quiz-btn primary" id="finishQuizBtn" style="display: none;">
+                  View Results 🏆
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quiz Completion Results Summary Card (Hidden initially) -->
+          <div class="quiz-results-card" id="quizResultsCard" style="display: none;">
+            <div class="results-header">
+              <div class="score-circle-wrapper">
+                <div class="score-circle">
+                  <span class="score-percent" id="scorePercentDisplay">100%</span>
+                  <span class="score-ratio" id="scoreRatioDisplay">8/8 Correct</span>
+                </div>
+              </div>
+              <h3 class="results-title" id="resultsTitle">Outstanding Health Literacy!</h3>
+              <p class="results-summary" id="resultsSummaryText">
+                You demonstrated an excellent grasp of core preventive health concepts.
+              </p>
+            </div>
+
+            <div class="results-actions">
+              <button class="quiz-btn primary" id="retakeQuizBtn">
+                🔄 Retake Quiz
+              </button>
+              <button class="quiz-btn secondary" id="reviewChatBtn">
+                💬 Discuss Topics with Chatbot
+              </button>
+            </div>
+
+            <!-- Detailed Question Review List -->
+            <div class="results-review-list">
+              <h4 class="review-heading">Detailed Question Review & Explanations</h4>
+              <div id="detailedReviewContainer">
+                <!-- Injected via JavaScript -->
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Emergency Modal Dialog -->
+    <div class="modal-backdrop" id="emergencyModal" style="display: none;">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <div class="modal-title-box">
+            <span class="modal-icon">🚨</span>
+            <h3 class="modal-title">Emergency Medical Information</h3>
+          </div>
+          <button class="modal-close-btn" id="closeEmergencyModalBtn">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-alert">
+            If you or someone nearby is in immediate danger, experiencing severe chest pressure, severe shortness of breath, sudden facial drooping, severe trauma, or acute crisis, take action now:
+          </p>
+          <div class="hotline-list">
+            <div class="hotline-card">
+              <div class="hotline-title">United States & Canada</div>
+              <div class="hotline-number">Call 911</div>
+              <div class="hotline-desc">Immediate dispatch for police, fire, or ambulance.</div>
+            </div>
+            <div class="hotline-card">
+              <div class="hotline-title">United Kingdom</div>
+              <div class="hotline-number">Call 999 or 111</div>
+              <div class="hotline-desc">999 for emergencies; 111 for urgent medical advice.</div>
+            </div>
+            <div class="hotline-card">
+              <div class="hotline-title">European Union & International</div>
+              <div class="hotline-number">Call 112</div>
+              <div class="hotline-desc">European emergency number accessible free of charge.</div>
+            </div>
+            <div class="hotline-card">
+              <div class="hotline-title">988 Suicide & Crisis Lifeline</div>
+              <div class="hotline-number">Call or Text 988</div>
+              <div class="hotline-desc">Free, confidential 24/7 mental health and crisis support.</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="quiz-btn primary" id="dismissEmergencyModalBtn">I Understand</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Google API Key Configuration Modal -->
+    <div class="modal-backdrop" id="apiKeyModal" style="display: none;">
+      <div class="modal-dialog modal-api-dialog">
+        <div class="modal-header">
+          <div class="modal-title-box">
+            <span class="modal-icon">🔑</span>
+            <h3 class="modal-title">Google Gemini API Key</h3>
+          </div>
+          <button class="modal-close-btn" id="closeApiKeyModalBtn" aria-label="Close API Key dialog">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-intro">
+            Connect your Google Gemini API key to enable intelligent AI-driven health literacy, multi-turn reasoning, and memory of previous searches.
+          </p>
+
+          <div class="api-status-banner" id="apiKeyModalStatusBanner">
+            <span class="status-indicator-dot" id="modalStatusDot"></span>
+            <span class="status-text" id="modalStatusText">Checking connection...</span>
+          </div>
+
+          <div class="form-group">
+            <label for="apiKeyInput" class="form-label">Google API Key</label>
+            <div class="input-password-wrapper">
+              <input 
+                type="password" 
+                id="apiKeyInput" 
+                class="settings-input" 
+                placeholder="Paste AIzaSy... key here" 
+                autocomplete="off" 
+                spellcheck="false">
+              <button type="button" class="toggle-visibility-btn" id="toggleKeyVisibilityBtn" title="Toggle visibility">
+                👁️
+              </button>
+            </div>
+            <p class="field-hint">
+              Your key is securely saved in your browser and used for generating evidence-informed wellness guidance.
+            </p>
+          </div>
+
+          <div class="key-guide-card">
+            <div class="guide-title">💡 How to get a free Google API key:</div>
+            <ol class="guide-steps">
+              <li>Visit <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">Google AI Studio</a>.</li>
+              <li>Sign in with your Google account and click <strong>"Create API key"</strong>.</li>
+              <li>Paste your key above, then click <strong>"Test &amp; Save"</strong>.</li>
+            </ol>
+            <div class="guide-note">
+              <em>Note: If no API key is provided, Vitalis operates in offline mode using the built-in evidence-based knowledge base.</em>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="quiz-btn danger" id="removeApiKeyBtn" style="display: none;">Remove Key</button>
+          <div class="modal-footer-right">
+            <button type="button" class="quiz-btn secondary" id="cancelApiKeyModalBtn">Cancel</button>
+            <button type="button" class="quiz-btn primary" id="saveApiKeyBtn">Test &amp; Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Main JavaScript App -->
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
