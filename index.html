@@ -1,0 +1,273 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SMART HEALTH GUIDANCE SYSTEM</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <header>
+            <div class="header-container" >
+                <div class="nav-left">
+                    <!-- <a href="index.html" class="nav-left">
+                    <img src="logo.png" class="logo-img">
+                    </a> -->
+                    <img src="logo.png" class="logo-img" onclick="openLogo()">
+
+                    <div id="logoModal" class="modal">
+                        <span class="close" onclick="closeLogo()">&times;</span>
+                        <img class="modal-content" id="img01">
+                    </div>
+                <h3>HEALTH GUIDANCE</h3> 
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="/index.html">Home</a></li>
+                        <li><a href="/about.html">About</a></li>
+                        <li><a href="/services.html">Services</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="search-bar">
+                    <div class="search-box">
+                      <input type="text" id="searchInput" placeholder="Search health topics...">
+                      <button onclick="handleSearch()">Search</button>
+                     </div>
+                
+    <script>
+    function handleSearch() {
+        let input = document.getElementById("searchInput").value.toLowerCase().trim();
+
+        // Direct page mapping
+        let pages = {
+            "healthy food": "healthy-food.html",
+            "food": "healthy-food.html",
+
+            "yoga": "yoga.html",
+
+            "meditation": "meditation.html",
+
+            "book": "book.html",
+
+            "exercise": "exercise.html",
+            "workout": "exercise.html",
+
+            "therapy": "therapy.html",
+            "bmi": "BMI.html",
+        };
+
+        // If match → go directly
+        if (pages[input]) {
+            window.location.href = pages[input];
+        } 
+        // Else → go to search.html with query
+        else {
+            window.location.href = "search.html?query=" + input;
+        }
+    }
+    </script>
+                    <!-- <input type="text" placeholder="Search...">
+                    <button>Search</button> -->
+                </div>
+                <div class="auth-links" id="authArea">
+                    <!-- Dynamic content will come here -->
+                </div>
+                <div class="auth-links">
+                    <!-- <a href="/login.html">Login</a>
+                    <a href="/signup.html">Sign Up</a> -->
+                    <a href="/profile.html"  gap: 25px; ><svg height = "30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 -5 24 24" fill="currentColor"><path d="M20 22H18V20C18 18.3431 16.6569 17 15 17H9C7.34315 17 6 18.3431 6 20V22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13ZM12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z"></path></svg><br>     </a>
+                </div>
+            </div>
+        </header>
+        <section class="slideshow">
+            <div class="slide">Special Offer: 50% off on Therapy Sessions!</div>
+            <div class="slide">Join our new Yoga Classes now!</div>
+            <div class="slide">Get the best Health & Wellness Books!</div>
+        </section>
+        
+                               <div class="bmi-container" align-items: center;>
+                                   <a href="bmi.html">
+                                       <button class="bmi-btn">Calculate BMI</button>
+                                     </a>
+                                </div>
+
+        <section class="services">
+            <a href="/foodsection.html" style="text-decoration: none; color: black;"> <div class="service-box" id = "serv1">
+                <h2>Healthy Food</h2>
+                <p>Discover nutritious meal plans for a balanced diet.</p>
+                <!-- <div class="image1"></div> -->
+                <img src="/food1.png" height="200px" width="200px">
+            </div></a>
+            <a href="yoga.html" style="text-decoration: none; color: black;"><div class="service-box">
+                <h2>Yoga</h2>
+                <p>Practice mindfulness and flexibility with guided yoga sessions.</p>
+                <img src="/yoga1.png" height="200px" width="200px">
+            </div></a>
+        <a href="/meditation.html" style="text-decoration: none; color: black;"> <div class="service-box">
+                <h2>Meditation</h2>
+                <p>Relax your mind and find inner peace through meditation.</p>
+                <img src="/meditation.png" height="200px" width="200px">
+            </div></a> 
+            <a href="/books.html" style="text-decoration: none; color: black;"><div class="service-box">
+                <h2>Books & Audiobooks</h2>
+                <p>Enhance your knowledge with wellness-related books and audiobooks.</p>
+                <img src="/book.png" height="200px" width="200px">
+            </div></a>
+            <a href="exercise.html" style="text-decoration: none; color: black;"><div class="service-box">
+                <h2>Exercise</h2>
+                <p>Stay fit with effective workout routines and tips.</p>
+                <img src="/gym.png" height="200px" width="200px">
+            </div></a>
+            <a href="/thearapy.html" style="text-decoration: none; color: black;"><div class="service-box">
+                <h2>Therapy Sessions/Offline</h2>
+                <p>Join professional therapy sessions for mental well-being.</p>
+                <img src="/session.png" height="200px" width="200px">
+                
+            </div></a>
+
+                
+        </section>
+        
+        <footer>
+            <p>&copy; 2026 SMART HEALTH GUIDANCE SYSTEM. Created by govind Sisodiya,Angad sahani,Balveer Sisodiya,Aman sahani.</p>
+        </footer>
+        <script src="auth.js"></script>
+
+    <script>
+    function openLogo() {
+        document.getElementById("logoModal").style.display = "block";
+        document.getElementById("img01").src = "logo.png";
+    }
+
+    function closeLogo() {
+        document.getElementById("logoModal").style.display = "none";
+    }
+    </script>
+
+    <script>
+    window.onload = function () {
+        updateAuthUI();
+    };
+    </script>
+
+        <script>
+
+    // Update Navbar
+    function updateAuthUI() {
+        let auth = document.getElementById("authArea");
+        let user = localStorage.getItem("session");
+
+        if (user) {
+            let first = user.charAt(0).toUpperCase();
+
+            auth.innerHTML = `
+                <div class="user-logo" title="${user}">${first}</div>
+                <button onclick="logout()" style="margin-left:10px;">Logout</button>
+            `;
+        } else {
+            auth.innerHTML = `
+                <a href="/login.html">Login</a>
+                <a href="/signup.html">Sign Up</a>
+            `;
+        }
+    }
+
+    // Logout
+    function logout() {
+        localStorage.removeItem("session");
+        updateAuthUI();
+        window.location.href = "/index.html";
+    }
+
+    // Run on page load
+    window.onload = function () {
+        updateAuthUI();
+    };
+
+    </script>
+
+    <!--  -->
+    <script>
+    function updateAuthUI() {
+        let auth = document.getElementById("authArea");
+        let session = localStorage.getItem("session");
+
+        if (session) {
+            let first = session.charAt(0).toUpperCase();
+
+            auth.innerHTML = `
+                <div class="user-logo" title="${session}">
+                    ${first}
+                </div>
+                <button onclick="logout()" style="margin-left:10px;">Logout</button>
+            `;
+        } else {
+            auth.innerHTML = `
+                <a href="login.html">Login</a>
+                <a href="signup.html">Sign Up</a>
+            `;
+        }
+    }
+
+    // LOGOUT
+    function logout() {
+        localStorage.removeItem("session");
+        window.location.href = "index.html";
+    }
+
+    // RUN ON LOAD
+    window.onload = function() {
+        updateAuthUI();
+    };
+    </script>
+    <!-- // login -->
+
+
+    <script>
+    let email = localStorage.getItem("userEmail");
+
+    if (!localStorage.getItem("isLoggedIn")) {
+        window.location.href = "login.html";
+    }
+
+    if (email) {
+        document.getElementById("profileIcon").innerText =
+            email.charAt(0).toUpperCase();
+    }
+    </script>
+    <script>
+    // CHECK LOGIN STATUS
+    let isLoggedIn = localStorage.getItem("isLoggedIn");
+
+
+    let guestView = document.getElementById("guestView");
+    let userView = document.getElementById("userView");
+    let profileIcon = document.getElementById("profileIcon");
+
+    // 🔴 IF LOGGED IN
+    if (isLoggedIn) {
+        guestView.style.display = "none";
+        userView.style.display = "flex";
+
+        if (email) {
+            profileIcon.innerText = email.charAt(0).toUpperCase();
+        }
+    } else {
+        guestView.style.display = "flex";
+        userView.style.display = "none";
+    }
+
+    // 🔴 LOGOUT BUTTON
+    document.getElementById("logoutBtn").addEventListener("click", function() {
+        localStorage.clear();
+
+        // SHOW LOGIN AGAIN
+        guestView.style.display = "flex";
+        userView.style.display = "none";
+    });
+    </script>
+       
+    </body>
+    </html>

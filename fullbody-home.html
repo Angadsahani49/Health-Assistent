@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Full Body - Home Workout</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #eef7f2;
+      color: #1b4332;
+    }
+
+    header {
+    background: #52B788;
+    padding: 2% 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    color: white;
+}
+
+.header-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 2vw;
+    font-weight: 600;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0 1.5vw;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.2vw;
+}
+nav ul li a:hover{
+    color: #FFDD57;
+}
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 200px;
+}
+
+.search-bar button {
+    padding: 8px 15px;
+    border: none;
+    background: #ffc107;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.auth-links a {
+    margin-left: 1.5vw;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.2vw;
+}
+
+
+/* Authentication Links */
+/* .auth-links {
+    display: flex;
+    gap: 5%;
+} */
+
+.auth-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    font-size: 1.2vw;
+    transition: color 0.3s;
+}
+
+.auth-links a:hover {
+    color: #FFDD57;
+}
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.07);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 30px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .timer-controls {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .timer-controls select,
+    .timer-controls button {
+      font-size: 16px;
+      padding: 10px 15px;
+      margin: 0 8px;
+      border: none;
+      border-radius: 8px;
+      background-color: #52b788;
+      color: white;
+      cursor: pointer;
+    }
+
+    .timer-controls button:hover {
+      background-color: #40916c;
+    }
+
+    .timer {
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .card {
+      background-color: #f1fdf7;
+      width: 250px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+      text-align: center;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .card img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+    }
+
+    .card h3 {
+      margin: 12px 0 4px;
+      font-size: 18px;
+      color: #2d6a4f;
+    }
+
+    .card p {
+      font-size: 14px;
+      padding: 0 10px 15px;
+      color: #333;
+    }
+
+    .instructions {
+      background-color: #d8f3dc;
+      padding: 25px 30px;
+      border-radius: 12px;
+      margin-top: 40px;
+      font-size: 16px;
+    }
+
+    .instructions ul {
+      margin-left: 20px;
+      line-height: 1.8;
+    }
+
+    footer {
+      background-color: #1b4332;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 60px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="nav-left">
+                    <!-- <a href="index.html" class="nav-left">
+                    <img src="logo.png" class="logo-img">
+                    </a> -->
+                    <img src="logo.png" class="logo-img" onclick="openLogo()">
+
+                    <div id="logoModal" class="modal">
+                        <span class="close" onclick="closeLogo()">&times;</span>
+                        <img class="modal-content" id="img01">
+                    </div>
+                <h3>HEALTH GUIDANCE</h3> 
+                </div>
+        <!-- <div class="logo">HEALTH GUIDANCE</div> -->
+        <nav>
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/services.html">Services</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button>Search</button>
+        </div>
+        <div class="auth-links">
+            <!-- <a href="/login.html">Login</a>
+            <a href="/signup.html">Sign Up</a> -->
+            <a href="/profile.html"><svg height = "30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 -5 24 24" fill="currentColor"><path d="M20 22H18V20C18 18.3431 16.6569 17 15 17H9C7.34315 17 6 18.3431 6 20V22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13ZM12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z"></path></svg></a>
+        </div>
+    </div>
+</header>
+
+  <div class="container">
+    <h2>Full Body - Home Workout</h2>
+    <p class="description">No gym? No problem. Crush your workout at home using your bodyweight and basic moves!</p>
+
+    <div class="timer-controls">
+      <label for="duration">Workout Duration:</label>
+      <select id="duration">
+        <option value="10">10 mins</option>
+        <option value="15" selected>15 mins</option>
+        <option value="20">20 mins</option>
+      </select>
+      <button onclick="startTimer()">Start</button>
+      <button onclick="stopTimer()">Stop</button>
+      <button onclick="resetTimer()">Reset</button>
+    </div>
+
+    <div class="timer" id="clock">00:00</div>
+
+    <div class="cards">
+      <div class="card">
+        <img src="bodyweight-squat.gif" alt="Bodyweight Squats">
+        <h3>Bodyweight Squats</h3>
+        <p>3 sets of 15 reps</p>
+      </div>
+      <div class="card">
+        <img src="push-up.gif" alt="Push Ups">
+        <h3>Push Ups</h3>
+        <p>3 sets of 12 reps</p>
+      </div>
+      <div class="card">
+        <img src="bodyweight-forward-lunge.gif" alt="Lunges">
+        <h3>Lunges</h3>
+        <p>3 sets of 10 reps per leg</p>
+      </div>
+      <div class="card">
+        <img src="plank.gif" alt="Plank">
+        <h3>Plank</h3>
+        <p>3 sets, hold for 30 seconds</p>
+      </div>
+      <div class="card">
+        <img src="jumping-jacks.gif" alt="Jumping Jacks">
+        <h3>Jumping Jacks</h3>
+        <p>3 sets of 30 seconds</p>
+      </div>
+      <div class="card">
+        <img src="wall-sit.gif" alt="Wall Sit">
+        <h3>Wall Sit</h3>
+        <p>3 sets, hold for 30 seconds</p>
+      </div>
+      <div class="card">
+        <img src="weighted-step-up.gif" alt="Step Ups">
+        <h3>Step Ups</h3>
+        <p>3 sets of 10 reps per leg</p>
+      </div>
+      <div class="card">
+        <img src="arm-circles.gif" alt="Arm Circles">
+        <h3>Arm Circles</h3>
+        <p>3 sets of 20 seconds</p>
+      </div>
+    </div>
+
+    <div class="instructions">
+      <strong>Instructions:</strong>
+      <ul>
+        <li>Start with 3–5 mins warm-up like jumping jacks or jogging in place.</li>
+        <li>Rest 30 seconds between each set.</li>
+        <li>Focus on controlled movements and proper posture.</li>
+        <li>Hydrate well and stretch after completing your workout.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 SMART HEALTH GUIDANCE SYSTEM. Stay Strong, Stay Home 💪
+  </footer>
+
+  <script>
+    let timer;
+    let time = 0;
+    let isRunning = false;
+
+    function startTimer() {
+      if (!isRunning) {
+        const minutes = parseInt(document.getElementById('duration').value);
+        time = minutes * 60;
+        updateClock();
+        timer = setInterval(() => {
+          if (time > 0) {
+            time--;
+            updateClock();
+          } else {
+            clearInterval(timer);
+            alert("Workout complete!");
+          }
+        }, 1000);
+        isRunning = true;
+      }
+    }
+
+    function stopTimer() {
+      clearInterval(timer);
+      isRunning = false;
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      time = 0;
+      updateClock();
+      isRunning = false;
+    }
+
+    function updateClock() {
+      const minutes = Math.floor(time / 60).toString().padStart(2, '0');
+      const seconds = (time % 60).toString().padStart(2, '0');
+      document.getElementById('clock').innerText = `${minutes}:${seconds}`;
+    }
+  </script>
+
+</body>
+</html>

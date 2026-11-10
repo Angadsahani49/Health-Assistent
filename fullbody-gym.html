@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Full Body Gym Workout</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f0fbf5;
+      color: #113c2d;
+    }
+    header {
+    background: #52B788;
+    padding: 2% 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    color: white;
+}
+
+.header-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 2vw;
+    font-weight: 600;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0 1.5vw;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.2vw;
+}
+nav ul li a:hover{
+    color: #FFDD57;
+}
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 200px;
+}
+
+.search-bar button {
+    padding: 8px 15px;
+    border: none;
+    background: #ffc107;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.auth-links a {
+    margin-left: 1.5vw;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.2vw;
+}
+
+
+/* Authentication Links */
+/* .auth-links {
+    display: flex;
+    gap: 5%;
+} */
+
+.auth-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    font-size: 1.2vw;
+    transition: color 0.3s;
+}
+
+.auth-links a:hover {
+    color: #FFDD57;
+}
+
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    p.description {
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .timer-controls {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .timer-controls button {
+      background-color: #3cb371;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      font-size: 16px;
+      margin: 0 8px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .timer {
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      width: 250px;
+      background-color: #e6f8ec;
+      border: 1px solid #90d7b7;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .card img {
+      height: 160px;
+      object-fit: contain;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .card p {
+      font-size: 15px;
+      color: #333;
+    }
+
+    .tips {
+      background-color: #d8f5dd;
+      border-left: 5px solid #3cb371;
+      padding: 30px;
+      border-radius: 12px;
+    }
+
+    .tips h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .tips ul {
+      list-style: disc;
+      margin-left: 20px;
+      line-height: 1.8;
+    }
+
+    footer {
+      background-color: #1e4d3a;
+      padding: 30px;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="nav-left">
+                    <!-- <a href="index.html" class="nav-left">
+                    <img src="logo.png" class="logo-img">
+                    </a> -->
+                    <img src="logo.png" class="logo-img" onclick="openLogo()">
+
+                    <div id="logoModal" class="modal">
+                        <span class="close" onclick="closeLogo()">&times;</span>
+                        <img class="modal-content" id="img01">
+                    </div>
+                <h3>HEALTH GUIDANCE</h3> 
+                </div>
+        <!-- <div class="logo">HEALTH GUIDANCE</div> -->
+        <nav>
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/services.html">Services</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button>Search</button>
+        </div>
+        <div class="auth-links">
+            <!-- <a href="/login.html">Login</a>
+            <a href="/signup.html">Sign Up</a> -->
+            <a href="/profile.html"><svg height = "30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 -5 24 24" fill="currentColor"><path d="M20 22H18V20C18 18.3431 16.6569 17 15 17H9C7.34315 17 6 18.3431 6 20V22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13ZM12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z"></path></svg></a>
+        </div>
+    </div>
+</header>
+
+  <div class="container">
+    <h2>Full Body Gym Workout</h2>
+    <p class="description">Power up your body with these effective exercises targeting all major muscle groups.</p>
+
+    <div class="timer-controls">
+      <button onclick="startTimer()">Start</button>
+      <button onclick="stopTimer()">Stop</button>
+      <button onclick="resetTimer()">Reset</button>
+    </div>
+
+    <div class="timer" id="timer">00:00</div>
+
+    <div class="cards">
+      <div class="card">
+        <img src="/bodyweight-squat.gif" alt="Squats">
+        <h3>Squats</h3>
+        <p>Build lower body strength and stability with this compound movement.</p>
+      </div>
+      <div class="card">
+        <img src="/push-up.gif" alt="Push-Ups">
+        <h3>Push-Ups</h3>
+        <p>Strengthen chest, triceps, and core with bodyweight power.</p>
+      </div>
+      <div class="card">
+        <img src="bodyweight-forward-lunge.gif" alt="Lunges">
+        <h3>Lunges</h3>
+        <p>Boost balance, coordination and leg muscle endurance.</p>
+      </div>
+      <div class="card">
+        <img src="barbell-deadlift-movement.gif" alt="Deadlift">
+        <h3>Deadlifts</h3>
+        <p>Full-body strength builder focusing on back, legs and core.</p>
+      </div>
+      <div class="card">
+        <img src="barbell-bench-press.gif" alt="Bench Press">
+        <h3>Bench Press</h3>
+        <p>Effective chest and tricep strength training move.</p>
+      </div>
+      <div class="card">
+        <img src="jumping-jacks.gif" alt="Jumping Jacks">
+        <h3>Jumping Jacks</h3>
+        <p>Boosts heart rate while engaging full-body muscles.</p>
+      </div>
+    </div>
+
+    <div class="tips">
+      <h3>Full Body Workout Tips:</h3>
+      <ul>
+        <li>Start with a 5–10 minute dynamic warm-up to prevent injuries.</li>
+        <li>Use proper form over heavier weights for effective gains.</li>
+        <li>Balance strength training with cardio for fat loss.</li>
+        <li>Stay consistent – track reps and rest to progress weekly.</li>
+        <li>Fuel your body with protein-rich meals post workout.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer></footer>
+
+  <script>
+    let timer;
+    let seconds = 0;
+
+    function updateTimerDisplay() {
+      const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
+      const secs = String(seconds % 60).padStart(2, '0');
+      document.getElementById("timer").textContent = `${mins}:${secs}`;
+    }
+
+    function startTimer() {
+      if (!timer) {
+        timer = setInterval(() => {
+          seconds++;
+          updateTimerDisplay();
+        }, 1000);
+      }
+    }
+
+    function stopTimer() {
+      clearInterval(timer);
+      timer = null;
+    }
+
+    function resetTimer() {
+      stopTimer();
+      seconds = 0;
+      updateTimerDisplay();
+    }
+  </script>
+
+</body>
+</html>
