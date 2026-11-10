@@ -53,14 +53,14 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
     .then(data => {
         alert("Login Successful ✅");
 
-        // // ✅ Save session
-        // localStorage.setItem("session", email);
+         // ✅ Save session
+         localStorage.setItem("session", email);
 
         // ✅ Show icon immediately
         showUserView(email);
     })
-   // .catch(err => {
-  //     alert("Wrong Email or Password ❌");
+    .catch(err => {
+      alert("Wrong Email or Password ❌");
     });
 });
 
