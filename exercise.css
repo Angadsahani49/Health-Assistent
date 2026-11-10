@@ -1,0 +1,166 @@
+/* Reset & base */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f7f9fa;
+    color: #333;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    color: #2f604d;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    color: #555;
+  }
+  
+  /* Navbar */
+  header {
+    background: #52B788;
+    padding: 2% 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    color: white;
+}
+
+.header-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 2vw;
+    font-weight: 600;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0 1.5vw;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.2vw;
+}
+nav ul li a:hover{
+    color: #FFDD57;
+}
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 200px;
+}
+
+.search-bar button {
+    padding: 8px 15px;
+    border: none;
+    background: #ffc107;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.auth-links a {
+    margin-left: 1.5vw;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.2vw;
+}
+
+
+/* Authentication Links */
+/* .auth-links {
+    display: flex;
+    gap: 5%;
+} */
+
+.auth-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    font-size: 1.2vw;
+    transition: color 0.3s;
+}
+
+.auth-links a:hover {
+    color: #FFDD57;
+}
+  
+  /* Main Container */
+  .main-container {
+    text-align: center;
+    padding: 60px 20px;
+  }
+  
+  /* Selectors */
+  .selector-row {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .selector-box {
+    background: white;
+    padding: 25px 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    min-width: 280px;
+  }
+  
+  .selector-box h2 {
+    color: #2f604d;
+    margin-bottom: 15px;
+  }
+  
+  select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Button */
+  .start-btn {
+    margin-top: 40px;
+    background-color: #ff6b6b;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .start-btn:hover {
+    background-color: #e94e4e;
+  }
+  

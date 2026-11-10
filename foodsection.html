@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SMART HEALTH GUIDANCE SYSTEM- Food Selection</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f2f7f5;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem;
+      background-color: #52B788;
+      color: white;
+    }
+
+    .header .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .search-bar input {
+      padding: 0.5rem;
+      border-radius: 20px;
+      border: none;
+      width: 200px;
+    }
+
+    .cart-icon {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .cart-icon span {
+      background: red;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      font-size: 0.8rem;
+    }
+
+    .section {
+      padding: 1rem 2rem;
+    }
+
+    .section h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    .food-container {
+      display: flex;
+      overflow-x: auto;
+      padding: 1rem 0;
+    }
+
+    .food-card {
+      background-color: #d2f0ec;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-right: 1rem;
+      min-width: 160px;
+      text-align: center;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .food-card img {
+      width: 100px;
+      height: 80px;
+      object-fit:cover;
+      border-radius: 8px;
+      background: #ccc;
+    }
+
+    .food-card h4 {
+      margin: 0.5rem 0;
+    }
+
+    .add-btn {
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      padding: 0.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 300px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .modal-content h3 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo"></div>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search food...">
+    </div>
+    <div class="cart-icon" onclick="toggleCart()">
+      🛒 <span id="cartCount">0</span>
+    </div>
+  </div>
+
+  <div id="foodSections"></div>
+
+  <div class="modal" id="cartModal">
+    <div class="modal-content">
+      <h3>Cart Items</h3>
+      <ul id="cartItems"></ul>
+    </div>
+  </div>
+
+  <script>
+    const foodData = {
+      Salads: [
+        { name: 'Greek Salad', image: 'greeksalad.png' },
+        { name: 'Avocado Salad', image: 'avocadomix.png' },
+        { name: 'Veggie Mix', image: 'HealthyGreens.png' },
+        { name: 'Cucumber Delight', image: 'cucumberDelight.png' },
+        { name: 'Spinach & Beet', image: 'Screenshot 2025-04-24 083159.png' },
+        { name: 'Tomato Tango', image: 'Screenshot 2025-04-24 083331.png' },
+        { name: 'Chickpea Crunch', image: 'ChickpeaSalad.png' },
+        { name: 'Rainbow Bowl', image: 'Screenshot 2025-04-24 083425.png' },
+        { name: 'Lettuce Wrap', image: 'Screenshot 2025-04-24 083737.png' },
+        { name: 'Broccoli Blast', image: 'Screenshot 2025-04-24 083926.png' }
+      ],
+      Fruits: [
+        { name: 'Apple Slices', image: 'Screenshot 2025-04-24 084005.png' },
+        { name: 'Banana', image: 'Screenshot 2025-04-24 084151.png' },
+        { name: 'Mango Cubes', image: 'Screenshot 2025-04-24 084223.png' },
+        { name: 'Papaya Bowl', image: 'Screenshot 2025-04-24 084352.png' },
+        { name: 'Kiwi', image: 'Screenshot 2025-04-24 084514.png' },
+        { name: 'Grapes Mix', image: 'Screenshot 2025-04-24 084555.png' },
+        { name: 'Pomegranate Seeds', image: 'Screenshot 2025-04-24 084645.png' },
+        { name: 'Pineapple Rings', image: 'Screenshot 2025-04-24 084719.png' },
+        { name: 'Strawberry', image: 'Screenshot 2025-04-24 084818.png' },
+        { name: 'Fruit Cocktail', image: 'Screenshot 2025-04-24 084849.png' }
+      ],
+      'Gym Workout Foods': [
+        { name: 'Protein Bar', image: 'Screenshot 2025-04-24 084920.png' },
+        { name: 'Whey Shake', image: 'Screenshot 2025-04-24 084945.png' },
+        
+        { name: 'MuscleBlaze Creatine', image: 'Screenshot 2025-04-24 090809.png' },
+        { name: 'Peanut Butter Toast', image: 'Screenshot 2025-04-24 085145.png' },
+        { name: 'PINTOLA 22g Oats', image: 'Screenshot 2025-04-24 090238.png' },
+        { name: 'PINATOLA Peanut Butter', image: 'Screenshot 2025-04-24 090643.png' },
+        { name: 'Greek Yogurt', image: 'Screenshot 2025-04-24 090610.png' },
+        { name: 'Cottage Cheese', image: 'Screenshot 2025-04-24 090542.png' },
+        { name: 'Energy Bites', image: 'Screenshot 2025-04-24 090451.png' }
+      ]
+    };
+
+    const cart = [];
+
+    const renderSections = () => {
+      const container = document.getElementById('foodSections');
+      container.innerHTML = '';
+
+      Object.keys(foodData).forEach(section => {
+        const secDiv = document.createElement('div');
+        secDiv.className = 'section';
+
+        const title = document.createElement('h2');
+        title.textContent = section;
+        secDiv.appendChild(title);
+
+        const slider = document.createElement('div');
+        slider.className = 'food-container';
+
+        foodData[section].forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'food-card';
+
+          card.innerHTML = `
+            <img src="${item.image}" alt="${item.name}" />
+            <h4>${item.name}</h4>
+            <button class="add-btn" onclick="addToCart('${item.name}')">Add to Cart</button>
+          `;
+          slider.appendChild(card);
+        });
+
+        secDiv.appendChild(slider);
+        container.appendChild(secDiv);
+      });
+    };
+
+    const addToCart = (item) => {
+      cart.push(item);
+      document.getElementById('cartCount').textContent = cart.length;
+    };
+
+    const toggleCart = () => {
+      const modal = document.getElementById('cartModal');
+      const itemList = document.getElementById('cartItems');
+      itemList.innerHTML = '';
+      cart.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        itemList.appendChild(li);
+      });
+      modal.style.display = 'flex';
+    };
+
+    window.onclick = function(e) {
+      if (e.target === document.getElementById('cartModal')) {
+        document.getElementById('cartModal').style.display = 'none';
+      }
+    };
+
+    document.getElementById('searchInput').addEventListener('input', function () {
+      const val = this.value.toLowerCase();
+      document.querySelectorAll('.food-card').forEach(card => {
+        const name = card.querySelector('h4').textContent.toLowerCase();
+        card.style.display = name.includes(val) ? 'block' : 'none';
+      });
+    });
+
+    renderSections();
+  </script>
+</body>
+</html>
+ 
