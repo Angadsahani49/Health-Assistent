@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weight Loss - Gym Workout</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f0f4f8;
+      color: #333;
+    }
+    header {
+      background: #218838;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 2.5rem;
+    }
+    .controls {
+      text-align: center;
+      margin: 20px;
+    }
+    select, button {
+      padding: 10px 15px;
+      font-size: 1rem;
+      margin: 0 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #ff8f00;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ff6f00;
+    }
+    #clock {
+      font-size: 2rem;
+      margin-top: 10px;
+    }
+    .exercise-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      
+      gap: 20px;
+      padding: 20px;
+    }
+    .exercise-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-align: center;
+      max-width: 260px;
+    }
+    .exercise-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: flex;
+      justify-content: center;
+    }
+    .exercise-card h3 {
+      margin: 10px 0 5px;
+      color: #e65100;
+    }
+    .exercise-card p {
+      padding: 0 10px 15px;
+      font-size: 0.95rem;
+    }
+    .instructions {
+      max-width: 700px;
+      margin: 40px auto;
+      background-color: #fff3e0;
+      padding: 25px;
+      border-radius: 15px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    .instructions ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>Weight Loss - Gym Workout</header>
+
+  <div class="controls">
+    <label for="duration">Workout Duration (minutes):</label>
+    <select id="duration">
+      <option value="15">15</option>
+      <option value="20" selected>20</option>
+      <option value="30">30</option>
+    </select>
+    <button onclick="startTimer()">Start</button>
+    <button onclick="stopTimer()">Stop</button>
+    <button onclick="resetTimer()">Reset</button>
+    <div id="clock">00:00</div>
+  </div>
+
+  <div class="exercise-container">
+    <div class="exercise-card">
+      <img src="Dumbbell-Burpees.gif" alt="Burpees">
+      <h3>Burpees</h3>
+      <p>3 sets of 15 reps</p>
+    </div>
+    <div class="exercise-card">
+      <img src="mountain-climbers.gif" alt="Mountain Climbers">
+      <h3>Mountain Climbers</h3>
+      <p>3 sets of 30 seconds</p>
+    </div>
+    <div class="exercise-card">
+      <img src="treadmill.gif" alt="Treadmill Running">
+      <h3>Treadmill Running</h3>
+      <p>10 minutes moderate pace</p>
+    </div>
+    <div class="exercise-card">
+      <img src="squat-jump.gif" alt="Squat Jumps">
+      <h3>Squat Jumps</h3>
+      <p>3 sets of 15 reps</p>
+    </div>
+    <div class="exercise-card">
+      <img src="russian-kettlebell-swing.gif" alt="Kettlebell Swings">
+      <h3>Kettlebell Swings</h3>
+      <p>3 sets of 20 reps</p>
+    </div>
+    <div class="exercise-card">
+      <img src="battle-ropes-exercise.gif" alt="Battle Ropes">
+      <h3>Battle Ropes</h3>
+      <p>3 sets of 30 seconds</p>
+    </div>
+    <div class="exercise-card">
+      <img src="how-to-row.gif" alt="Rowing Machine">
+      <h3>Rowing</h3>
+      <p>8 minutes</p>
+    </div>
+    
+ 
+   
+  <div class="instructions">
+    <p><strong>Instructions:</strong></p>
+    <ul>
+      <li>Begin with a 5-minute warm-up (jump rope, jogging, etc.).</li>
+      <li>Do each exercise with high intensity and maintain form.</li>
+      <li>Rest 30–45 seconds between exercises.</li>
+      <li>Cool down with stretches and deep breathing.</li>
+    </ul>
+  </div>
+
+  <script>
+    let timer;
+    let time = 0;
+    let isRunning = false;
+
+    function startTimer() {
+      if (!isRunning) {
+        const minutes = parseInt(document.getElementById('duration').value);
+        time = minutes * 60;
+        updateClock();
+        timer = setInterval(() => {
+          if (time > 0) {
+            time--;
+            updateClock();
+          } else {
+            clearInterval(timer);
+            alert("Workout complete!");
+          }
+        }, 1000);
+        isRunning = true;
+      }
+    }
+
+    function stopTimer() {
+      clearInterval(timer);
+      isRunning = false;
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      time = 0;
+      updateClock();
+      isRunning = false;
+    }
+
+    function updateClock() {
+      const minutes = Math.floor(time / 60).toString().padStart(2, '0');
+      const seconds = (time % 60).toString().padStart(2, '0');
+      document.getElementById('clock').innerText = `${minutes}:${seconds}`;
+    }
+  </script>
+
+</body>
+</html>

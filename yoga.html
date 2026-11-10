@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoga Selection - SMART HEALTH GUIDANCE SYSTEM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="yoga.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+             <div class="nav-left">
+                <!-- <a href="index.html" class="nav-left">
+                <img src="logo.png" class="logo-img">
+                </a> -->
+                <img src="logo.png" class="logo-img" onclick="openLogo()">
+
+                <div id="logoModal" class="modal">
+                     <span class="close" onclick="closeLogo()">&times;</span>
+                     <img class="modal-content" id="img01">
+                </div>
+               <h3>HEALTH GUIDANCE</h3> 
+            </div>
+            <!-- <div class="logo">HEALTH GUIDANCE</div> -->
+            <nav>
+                <ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/services.html">Services</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <!-- <div class="search-bar"> -->
+                 <div class="search-box">
+                      <input type="text" id="searchInput" placeholder="Search health topics...">
+                      <button onclick="handleSearch()">Search</button>
+                     <!-- </div> -->
+                
+    <script>
+    function handleSearch() {
+        let input = document.getElementById("searchInput").value.toLowerCase().trim();
+
+        // Direct page mapping
+        let pages = {
+            "healthy food": "healthy-food.html",
+            "food": "healthy-food.html",
+
+            "yoga": "yoga.html",
+
+            "meditation": "meditation.html",
+
+            "book": "book.html",
+
+            "exercise": "exercise.html",
+            "workout": "exercise.html",
+
+            "therapy": "therapy.html"
+        };
+
+        // If match → go directly
+        if (pages[input]) {
+            window.location.href = pages[input];
+        } 
+        // Else → go to search.html with query
+        else {
+            window.location.href = "search.html?query=" + input;
+        }
+    }
+    </script>
+            </div>
+            <div class="auth-links">
+                <!-- <a href="/login.html">Login</a>
+                <a href="/signup.html">Sign Up</a> -->
+                <a href="/profile.html"><svg height = "30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 -5 24 24" fill="currentColor"><path d="M20 22H18V20C18 18.3431 16.6569 17 15 17H9C7.34315 17 6 18.3431 6 20V22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13ZM12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z"></path></svg></a>
+             </div>
+             <div>
+                
+             </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Select Your Yoga Plan</h1>
+
+        <!-- Experience Level -->
+        <section class="selection">
+            <h2>Choose Your Experience Level</h2>
+            <div class="options" id="level-options">
+                <div class="option-box" data-level="beginner">Beginner</div>
+                <div class="option-box" data-level="intermediate">Intermediate</div>
+                <div class="option-box" data-level="advanced">Advanced</div>
+            </div>
+        </section>
+
+        <!-- Yoga Type -->
+        <section class="selection">
+            <h2>Choose Yoga Style</h2>
+            <div class="options" id="type-options">
+                <div class="option-box" data-type="relaxation">Mindfulness & Relaxation</div>
+                <div class="option-box" data-type="flexibility">Flexibility & Stretching</div>
+                <div class="option-box" data-type="strength">Strength & Endurance</div>
+                <div class="option-box" data-type="balance">Balance & Stability</div>
+                <div class="option-box" data-type="spiritual">Spiritual Growth & Meditation</div>
+                <div class="option-box" data-type="detox">High Energy & Detoxification</div>
+            </div>
+        </section>
+
+        <button class="proceed-btn" id="continueBtn">Continue</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 SMART HEALTH GUIDANCE SYSTEM. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        let selectedLevel = "";
+        let selectedType = "";
+
+        document.querySelectorAll('#level-options .option-box').forEach(box => {
+            box.addEventListener('click', () => {
+                selectedLevel = box.dataset.level;
+                document.querySelectorAll('#level-options .option-box').forEach(b => b.classList.remove('active'));
+                box.classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('#type-options .option-box').forEach(box => {
+            box.addEventListener('click', () => {
+                selectedType = box.dataset.type;
+                document.querySelectorAll('#type-options .option-box').forEach(b => b.classList.remove('active'));
+                box.classList.add('active');
+            });
+        });
+
+        document.getElementById('continueBtn').addEventListener('click', () => {
+            if (selectedLevel && selectedType) {
+                const url = `${selectedLevel}-${selectedType}.html`;
+                window.location.href = url;
+            } else {
+                alert("Please select both level and yoga style.");
+            }
+        });
+    </script>
+</body>
+</html>
