@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>6-Pack Abs - Home Workout</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #F0FAF4;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+    background: #52B788;
+    padding: 2% 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    color: white;
+}
+
+.header-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 2vw;
+    font-weight: 600;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0 1.5vw;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.2vw;
+}
+nav ul li a:hover{
+    color: #FFDD57;
+}
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 200px;
+}
+
+.search-bar button {
+    padding: 8px 15px;
+    border: none;
+    background: #ffc107;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.auth-links a {
+    margin-left: 1.5vw;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.2vw;
+}
+
+
+/* Authentication Links */
+/* .auth-links {
+    display: flex;
+    gap: 5%;
+} */
+
+.auth-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    font-size: 1.2vw;
+    transition: color 0.3s;
+}
+
+.auth-links a:hover {
+    color: #FFDD57;
+}
+
+    .container {
+      width: 85%;
+      margin: 3% auto;
+      padding: 2%;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      text-align: center;
+    }
+
+    h1 {
+      color: #1B4332;
+      font-size: 2.4vw;
+      margin-bottom: 1%;
+    }
+
+    .controls {
+      margin: 2% 0;
+    }
+
+    .controls select, .controls button {
+      padding: 10px 20px;
+      font-size: 1vw;
+      margin: 0 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #52B788;
+      color: white;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .controls button:hover, .controls select:hover {
+      background: #40916C;
+    }
+
+    .timer {
+      font-size: 2vw;
+      font-weight: bold;
+      color: #1B4332;
+      margin: 15px 0;
+    }
+
+    .exercise-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3%;
+      justify-content: center;
+      margin-top: 3%;
+    }
+
+    .exercise-card {
+      width: 250px;
+      background: #E9F5EF;
+      border: 2px solid #52B788;
+      border-radius: 16px;
+      padding: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: 0.3s ease;
+    }
+
+    .exercise-card img {
+      width: 100%;
+      border-radius: 12px;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .exercise-card h3 {
+      color: #1B4332;
+      margin-top: 12px;
+    }
+
+    .exercise-card p {
+      font-size: 0.95vw;
+      color: #444;
+    }
+
+    .tips {
+      margin-top: 5%;
+      padding: 2%;
+      background: #D8F3DC;
+      border-left: 5px solid #52B788;
+      border-radius: 8px;
+      text-align: left;
+    }
+
+    .tips h2 {
+      color: #1B4332;
+      font-size: 1.6vw;
+    }
+
+    .tips ul {
+      padding-left: 20px;
+      font-size: 1vw;
+      color: #333;
+    }
+
+    footer {
+      background-color: #1B4332;
+      color: white;
+      text-align: center;
+      padding: 1.5%;
+      font-size: 1vw;
+      margin-top: 4%;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="nav-left">
+                    <!-- <a href="index.html" class="nav-left">
+                    <img src="logo.png" class="logo-img">
+                    </a> -->
+                    <img src="logo.png" class="logo-img" onclick="openLogo()">
+
+                    <div id="logoModal" class="modal">
+                        <span class="close" onclick="closeLogo()">&times;</span>
+                        <img class="modal-content" id="img01">
+                    </div>
+                <h3>HEALTH GUIDANCE</h3> 
+                </div>
+        <!-- <div class="logo">Wellbeing Hub</div> -->
+        <nav>
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/services.html">Services</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="search-bar">
+             <div class="search-box">
+                      <input type="text" id="searchInput" placeholder="Search health topics...">
+                      <button onclick="handleSearch()">Search</button>
+                     </div>
+                
+    <script>
+    function handleSearch() {
+        let input = document.getElementById("searchInput").value.toLowerCase().trim();
+
+        // Direct page mapping
+        let pages = {
+            "healthy food": "healthy-food.html",
+            "food": "healthy-food.html",
+
+            "yoga": "yoga.html",
+
+            "meditation": "meditation.html",
+
+            "book": "book.html",
+
+            "exercise": "exercise.html",
+            "workout": "exercise.html",
+
+            "therapy": "therapy.html"
+        };
+
+        // If match → go directly
+        if (pages[input]) {
+            window.location.href = pages[input];
+        } 
+        // Else → go to search.html with query
+        else {
+            window.location.href = "search.html?query=" + input;
+        }
+    }
+    </script>
+        </div>
+        <div class="auth-links">
+            <!-- <a href="/login.html">Login</a>
+            <a href="/signup.html">Sign Up</a> -->
+            <a href="/profile.html"><svg height = "30px" xmlns="http://www.w3.org/2000/svg" viewBox="0 -5 24 24" fill="currentColor"><path d="M20 22H18V20C18 18.3431 16.6569 17 15 17H9C7.34315 17 6 18.3431 6 20V22H4V20C4 17.2386 6.23858 15 9 15H15C17.7614 15 20 17.2386 20 20V22ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13ZM12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z"></path></svg></a>
+        </div>
+    </div>
+</header>
+
+  <main class="container">
+    <h1>6-Pack Abs - Home Workout</h1>
+
+    <div class="controls">
+      <label for="duration">Workout Duration:</label>
+      <select id="duration">
+        <option value="10">10 minutes</option>
+        <option value="15" selected>15 minutes</option>
+        <option value="20">20 minutes</option>
+      </select>
+      <button onclick="startTimer()">Start</button>
+      <button onclick="stopTimer()">Stop</button>
+      <button onclick="resetTimer()">Reset</button>
+      <div class="timer" id="clock">00:00</div>
+    </div>
+
+    <div class="exercise-grid">
+      <div class="exercise-card">
+        <img src="crunch-floor.gif" alt="Crunches">
+        <h3>Crunches</h3>
+        <p>3 sets of 15 reps</p>
+      </div>
+      <div class="exercise-card">
+        <img src="hanging-leg-raise-movement.gif" alt="Leg Raises">
+        <h3>Leg Raises</h3>
+        <p>3 sets of 12 reps</p>
+      </div>
+      <div class="exercise-card">
+        <img src="plank.gif" alt="Plank">
+        <h3>Plank</h3>
+        <p>3 sets, hold for 30 seconds</p>
+      </div>
+      <div class="exercise-card">
+        <img src="scissor-kicks.gif" alt="Flutter Kicks">
+        <h3>Scissor Kicks</h3>
+        <p>3 sets of 30 seconds</p>
+      </div>
+      <div class="exercise-card">
+        <img src="how-to-do-a-kettlebell-russian-twist.gif" alt="Russian Twists">
+        <h3>Russian Twists</h3>
+        <p>3 sets of 20 reps</p>
+      </div>
+      <div class="exercise-card">
+        <img src="bicycle-crunch-movement.gif" alt="Bicycle Crunches">
+        <h3>Bicycle Crunches</h3>
+        <p>3 sets of 20 reps</p>
+      </div>
+    </div>
+
+    <div class="tips">
+      <h2>Workout Tips:</h2>
+      <ul>
+        <li>Warm-up before starting: jumping jacks or light stretching.</li>
+        <li>Perform each move with control and proper form.</li>
+        <li>Rest for 30–45 seconds between each set.</li>
+        <li>Stretch and cool down after completing the workout.</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 SMART HEALTH GUIDANCE SYSTEM. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let timer;
+    let time = 0;
+    let isRunning = false;
+
+    function startTimer() {
+      if (!isRunning) {
+        const minutes = parseInt(document.getElementById('duration').value);
+        time = minutes * 60;
+        updateClock();
+        timer = setInterval(() => {
+          if (time > 0) {
+            time--;
+            updateClock();
+          } else {
+            clearInterval(timer);
+            alert("Workout complete!");
+            isRunning = false;
+          }
+        }, 1000);
+        isRunning = true;
+      }
+    }
+
+    function stopTimer() {
+      clearInterval(timer);
+      isRunning = false;
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      time = 0;
+      updateClock();
+      isRunning = false;
+    }
+
+    function updateClock() {
+      const minutes = Math.floor(time / 60).toString().padStart(2, '0');
+      const seconds = (time % 60).toString().padStart(2, '0');
+      document.getElementById('clock').innerText = `${minutes}:${seconds}`;
+    }
+  </script>
+
+</body>
+</html>
