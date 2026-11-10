@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Smart Health AI Search</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #f4f7f9;
+    text-align: center;
+    margin-top: 50px;
+}
+
+h1 {
+    color: #2c3e50;
+}
+
+.search-box {
+    margin-top: 20px;
+}
+
+input {
+    width: 350px;
+    padding: 12px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    background: #27ae60;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+#chatBox {
+    width: 60%;
+    margin: 30px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+    min-height: 100px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.user {
+    color: blue;
+    margin-bottom: 10px;
+}
+
+.ai {
+    color: green;
+    margin-bottom: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>SMART HEALTH AI ASSISTANT</h1>
+
+<!-- 🔍 GOOGLE SEARCH (KEEP SAME) -->
+<!-- <script async src="https://cse.google.com/cse.js?cx=93646b658ca1b4505"></script>
+<div class="gcse-search"></div> -->
+
+<!-- 🤖 AI SECTION -->
+<h2>AI Health Assistant</h2>
+
+<input type="text" id="searchInput" placeholder="Ask health question...">
+<button onclick="askAI()">Ask</button>
+
+<div id="chatBox"></div>
+
+<p style="color: gray; font-size: 14px;">
+⚠️ This is not a medical diagnosis. Always consult a doctor for serious conditions.
+</p>
+
+
+<!-- <div id="chatBox"></div> -->
+
+<script>
+
+
+const healthKeywords = [
+    "health","diet","fitness","exercise",
+    "yoga","meditation","therapy","food",
+    "mental","wellness","sleep","pain","fever","headache","bmi"
+];
+
+// ⚠️ Serious symptoms
+const seriousSymptoms = [
+    "chest pain","breathing problem","shortness of breath",
+    "high fever","unconscious","severe pain",
+    "blood","vomiting blood","heart attack","stroke"
+];
+
+function askAI() {
+
+    let input = document.getElementById("searchInput").value.trim();
+    let chatBox = document.getElementById("chatBox");
+
+    if (input === "") return;
+
+    chatBox.innerHTML += `<div class="user">👤 You: ${input}</div>`;
+
+    let lowerInput = input.toLowerCase();
+
+    let isHealth = healthKeywords.some(word => lowerInput.includes(word));
+    let isSerious = seriousSymptoms.some(word => lowerInput.includes(word));
+
+    let response = "";
+
+    // ❌ Not health related
+    if (!isHealth) {
+        response = "❌ Please ask health-related questions only.";
+    }
+
+    // 🚨 Serious condition
+    else if (isSerious) {
+        response = "🚨 This may be a serious symptom. Please consult a doctor immediately or visit nearest hospital.";
+    }
+
+    // 🟡 Mild symptoms → doctor suggestion
+    else if (lowerInput.includes("fever") || lowerInput.includes("pain") || lowerInput.includes("headache")) {
+        response = "🤒 If symptoms last more than 2-3 days, consult a doctor. Stay hydrated and take rest.";
+    }
+
+    // 🥗 Diet
+    else if (lowerInput.includes("diet") || lowerInput.includes("food")) {
+        response = "🥗 Eat fruits, vegetables, protein & avoid junk food. Consult a nutritionist for a personalized diet.";
+    }
+
+    // 🏃 Exercise
+    else if (lowerInput.includes("exercise") || lowerInput.includes("fitness")) {
+        response = "🏃 Exercise daily for 30 minutes. If you have health conditions, consult a doctor before starting.";
+    }
+
+    // 🧘 Yoga
+    else if (lowerInput.includes("yoga")) {
+        response = "🧘 Yoga improves flexibility and reduces stress. If you have injuries, consult a professional.";
+    }
+
+    // 🧠 Mental health
+    else if (lowerInput.includes("mental")) {
+        response = "💙 Practice meditation and talk to someone. If stress is severe, consult a therapist.";
+    }
+
+    // 😴 Sleep
+    else if (lowerInput.includes("sleep")) {
+        response = "😴 Maintain 7-8 hours sleep. If insomnia continues, consult a doctor.";
+    }
+
+    // Default
+    else {
+        response = "✅ Maintain healthy lifestyle. If symptoms persist, consult a doctor.";
+    }
+
+    chatBox.innerHTML += `<div class="ai">🤖 AI: ${response}</div>`;
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    document.getElementById("searchInput").value = "";
+}
+
+// Enter key
+document.getElementById("searchInput").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        askAI();
+    }
+});
+
+
+// AI response function
+function askAI() {
+
+    let input = document.getElementById("searchInput").value.trim();
+    let chatBox = document.getElementById("chatBox");
+
+    if (input === "") return;
+
+    // Show user message
+    chatBox.innerHTML += `<div class="user">👤 You: ${input}</div>`;
+
+    let lowerInput = input.toLowerCase();
+
+    let isHealth = healthKeywords.some(word => lowerInput.includes(word));
+
+    let response = "";
+
+    if (!isHealth) {
+        response = "❌ Please ask health-related questions only (diet, fitness, yoga, etc.)";
+    } 
+    
+    else if (lowerInput.includes("diet") || lowerInput.includes("food")) {
+        response = "🥗 Eat balanced diet: fruits, vegetables, protein & avoid junk food.";
+    } 
+    
+    else if (lowerInput.includes("exercise") || lowerInput.includes("fitness")) {
+        response = "🏃 Exercise at least 30 minutes daily (walking, gym, yoga).";
+    } 
+    
+    else if (lowerInput.includes("yoga")) {
+        response = "🧘 Yoga improves flexibility, reduces stress & boosts immunity.";
+    } 
+    
+    else if (lowerInput.includes("meditation")) {
+        response = "🧠 Meditation helps calm mind & improve focus. Try 10 mins daily.";
+    } 
+    
+    else if (lowerInput.includes("sleep")) {
+        response = "😴 Sleep 7-8 hours daily for better health.";
+    } 
+    
+    else if (lowerInput.includes("mental")) {
+        response = "💙 Take breaks, talk to someone & practice mindfulness.";
+    } 
+    
+    else {
+        response = "✅ Stay active, eat healthy & maintain good lifestyle habits.";
+    }
+
+    // Show AI response
+    chatBox.innerHTML += `<div class="ai">🤖 AI: ${response}</div>`;
+
+    // Auto scroll
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    // Clear input
+    document.getElementById("searchInput").value = "";
+}
+
+// Enter key support
+document.getElementById("searchInput").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        askAI();
+    }
+});
+</script>
+
+</body>
+</html>

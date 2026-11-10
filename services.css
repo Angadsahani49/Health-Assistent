@@ -1,0 +1,215 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #F8F9FA;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    background: #52B788;
+    padding: 2% 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    color: white;
+}
+
+.header-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 2vw;
+    font-weight: 600;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0 1.5vw;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.2vw;
+}
+nav ul li a:hover{
+    color: #FFDD57;
+}
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 200px;
+}
+
+.search-bar button {
+    padding: 8px 15px;
+    border: none;
+    background: #ffc107;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.auth-links a {
+    margin-left: 1.5vw;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.2vw;
+}
+
+
+/* Authentication Links */
+/* .auth-links {
+    display: flex;
+    gap: 5%;
+} */
+
+.auth-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    font-size: 1.2vw;
+    transition: color 0.3s;
+}
+
+.auth-links a:hover {
+    color: #FFDD57;
+}
+
+/* Services Section */
+.services-section {
+    padding: 10% 5% 5%;
+}
+
+h1 {
+    color: #2C6E49;
+    font-size: 3vw;
+    font-weight: 600;
+}
+
+p {
+    color: #555;
+    font-size: 1.4vw;
+}
+
+/* Services Container */
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr)); /* Responsive grid */
+    gap: 3%;
+    max-width: 85%;
+    margin: auto;
+}
+
+/* Service Box */
+.service-box {
+    background: white;
+    padding: 5%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease-in-out;
+    text-align: center;
+}
+
+.service-box i {
+    font-size: 3vw;
+    color: #52B788;
+    margin-bottom: 2%;
+}
+
+.service-box h2 {
+    font-size: 1.8vw;
+    color: #2C6E49;
+    margin-bottom: 1.5%;
+}
+
+.service-box p {
+    font-size: 1.2vw;
+    color: #666;
+}
+
+/* Hover Effect */
+.service-box:hover {
+    transform: translateY(-3%);
+    background: #FF6B6B;
+    color: white;
+}
+
+.service-box:hover i,
+.service-box:hover h2,
+.service-box:hover p {
+    color: white;
+}
+
+/* Footer */
+footer {
+    background-color: #2C6E49;
+    color: white;
+    padding: 2%;
+    width: 100%;
+    position: relative;
+    margin-top: 5%;
+    font-size: 1.2vw;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .services-container {
+        grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
+    }
+
+    .service-box {
+        padding: 6%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .services-container {
+        grid-template-columns: repeat(auto-fit, minmax(80%, 1fr));
+    }
+
+    h1 {
+        font-size: 4vw;
+    }
+
+    p {
+        font-size: 1.6vw;
+    }
+
+    .service-box h2 {
+        font-size: 2vw;
+    }
+
+    .service-box p {
+        font-size: 1.5vw;
+    }
+
+    footer {
+        font-size: 1.4vw;
+    }
+}
